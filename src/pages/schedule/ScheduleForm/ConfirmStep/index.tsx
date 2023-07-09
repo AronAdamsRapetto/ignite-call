@@ -13,7 +13,7 @@ const confirmFormSchema = z.object({
 
 type ConfirmFormData = z.infer<typeof confirmFormSchema>
 
-export default function ConfirmStep() {
+export function ConfirmStep() {
   const {
     register,
     handleSubmit,
