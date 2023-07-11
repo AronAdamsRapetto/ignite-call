@@ -29,6 +29,26 @@ export const TimePicker = styled('div', {
   padding: '$6 $6 0',
   overflowY: 'scroll',
 
+  '&::-webkit-scrollbar': {
+    width: '0.875rem',
+  },
+
+  '&::-webkit-scrollbar-track': {
+    margin: '0.25rem 0',
+  },
+
+  '&::-webkit-scrollbar-thumb': {
+    backgroundColor: '$gray400',
+    borderRadius: '$lg',
+
+    backgroundClip: 'padding-box',
+    border: '5px solid transparent',
+
+    '&:hover': {
+      backgroundColor: '$gray200',
+    },
+  },
+
   position: 'absolute',
   top: 0,
   bottom: 0,
