@@ -31,7 +31,7 @@ export function CalendarStep() {
     : null
 
   const selectedDateWithoutTime = selectedDate
-    ? dayjs(selectedDate).format('YYY-MM-DD')
+    ? dayjs(selectedDate).format('YYYY-MM-DD')
     : null
 
   const { data: availability } = useQuery<Availability>(
@@ -49,6 +49,8 @@ export function CalendarStep() {
       enabled: !!selectedDate,
     },
   )
+
+  console.log(availability)
 
   return (
     <Container isTimePickerOpen={isDateSelected}>
