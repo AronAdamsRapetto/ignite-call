@@ -77,9 +77,6 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
       return response.data
     },
   )
-  // http://localhost:3000/api/users/aron-adams/blocked-dates?year=2023&month=7
-
-  console.log(blockedDates)
 
   const calendarWeeks = useMemo(() => {
     if (!blockedDates) {
