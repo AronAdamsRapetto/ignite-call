@@ -9,6 +9,7 @@ export async function getGoogleOAuthToken(userId: string) {
       user_id: userId,
     },
   })
+  console.log(account)
 
   const auth = new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID,
