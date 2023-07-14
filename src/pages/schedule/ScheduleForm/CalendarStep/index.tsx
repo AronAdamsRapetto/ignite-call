@@ -41,13 +41,31 @@ export function CalendarStep({ onSelectDateTime }: CalendarStepProps) {
   const { data: availability } = useQuery<Availability>(
     ['availability', selectedDateWithoutTime],
     async () => {
-      const response = await api.get(`/users/${username}/availability`, {
+      const {
+        data: { possibleTimes, blockedTimes },
+      } = await api.get(`/users/${username}/availability`, {
         params: {
           date: selectedDateWithoutTime,
         },
       })
 
-      return response.data
+      const referenceDate = dayjs(selectedDateWithoutTime)
+
+      const availableTimes = possibleTimes.filter((time: number) => {
+        console.log(blockedTimes)
+        const isTimeBlocked = blockedTimes.some(
+          (blockedTime: { date: string }) =>
+            new Date(blockedTime.date).getHours() === time,
+        )
+
+        const isTimeInPast = referenceDate
+          .set('hour', time)
+          .isBefore(new Date())
+
+        return !isTimeBlocked && !isTimeInPast
+      })
+
+      return { possibleTimes, availableTimes }
     },
     {
       enabled: !!selectedDate,
